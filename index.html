@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#f7f3e8">
+  <meta name="description" content="『カラタチの最果てのセンセイ！』の切り抜きをランダムに楽しめるサンプラー">
+  <title>最果てサンプラー</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="header">
+    <img src="./assets/logo.png" alt="カラタチの最果てのセンセイ！" class="logo">
+    <nav class="nav" aria-label="表示切り替え">
+      <button class="nav-button active" data-view="sampler">SAMPLER</button>
+      <button class="nav-button" data-view="favorites">♡ お気に入り</button>
+      <button class="nav-button" data-view="ranking">♛ 人気</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="samplerView" class="view active">
+      <div class="now-playing" aria-live="polite">
+        <div class="status-row">
+          <span id="status" class="status">スタンバイ</span>
+          <button id="favoriteCurrent" class="heart" aria-label="お気に入りに追加" disabled>♡</button>
+        </div>
+        <h1 id="clipTitle">PADを叩いて再生！</h1>
+        <p id="episodeTitle">全76本の切り抜きからランダムに選ばれます</p>
+        <div class="player-controls">
+          <button id="togglePlay" class="round-button" aria-label="再生・一時停止" disabled>▶</button>
+          <div class="time-area">
+            <input id="seek" type="range" min="0" max="100" value="0" aria-label="再生位置">
+            <div class="time"><span id="currentTime">0:00</span><span id="duration">0:00</span></div>
+          </div>
+          <a id="episodeLink" class="episode-link disabled" href="#" target="_blank" rel="noopener">本編を聴く ↗</a>
+        </div>
+      </div>
+
+      <div id="pads" class="pads" aria-label="切り抜きパッド"></div>
+      <button id="shuffle" class="shuffle">↻ PADをランダムに入れ替える</button>
+    </section>
+
+    <section id="favoritesView" class="view list-view">
+      <div class="view-heading"><p>MY FAVORITES</p><h2>お気に入り</h2></div>
+      <div id="favoritesList" class="clip-list"></div>
+    </section>
+
+    <section id="rankingView" class="view list-view">
+      <div class="view-heading"><p>POPULAR CLIPS</p><h2>人気ランキング</h2></div>
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-period="week">今週</button>
+        <button class="tab" data-period="all">累計</button>
+      </div>
+      <div id="rankingList" class="clip-list ranking-list"></div>
+      <p class="ranking-note">※ 現在はこの端末でお気に入りにした履歴を表示しています。</p>
+    </section>
+  </main>
+
+  <audio id="audio" preload="metadata"></audio>
+  <script src="./app.js"></script>
+</body>
+</html>
